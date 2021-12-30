@@ -48,6 +48,3 @@ jobs:
         commit_message: "Automatic commit"
         force: false
         target_branch: main
-      with:
-        github_token: "${{ secrets.TOKEN }}"
-        commit_message: "Automatic commit"
