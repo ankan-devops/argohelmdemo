@@ -37,7 +37,7 @@ jobs:
         
     - name: Update Version
       run: |
-        prev = $(cat ./config/deployment.yaml | grep image: | awk '{print $2}')
+        prev=$(cat ./config/deployment.yaml | grep image: | awk '{print $2}')
         sed -i "s|$prev|image: ${{ steps.build-image.outputs.image }}|g" ./config/deployment.yaml
         
     # - name: Run the Action
