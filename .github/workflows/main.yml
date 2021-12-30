@@ -37,7 +37,7 @@ jobs:
     - name: Update Version
       uses: nowactions/envsubst@v1
       with:
-        input: ./deployment.tpl.yaml
+        input: ./deployment.tpl.yml
         output: ./config/deployment.yaml
       env:
         BUILD_NUMBER: ${{ github.sha }}
