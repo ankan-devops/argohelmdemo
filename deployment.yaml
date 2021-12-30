@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: helloweb
-        image: z:${BITBUCKET_BUILD_NUMBER}
+        image:
         ports:
         - containerPort: 80
