@@ -37,7 +37,8 @@ jobs:
         
     - name: Update Version
       run: |
-        sed -i "s|image: 527720397058.dkr.ecr.us-east-2.amazonaws.com/argocd:(.*)|image: ${{ steps.build-image.outputs.image }}|g" ./config/deployment.yaml
+        prev = $(cat ./config/deployment.yaml | grep image: | awk '{print $2}')
+        sed -i "s|$prev|image: ${{ steps.build-image.outputs.image }}|g" ./config/deployment.yaml
         
     # - name: Run the Action
       # uses: devops-infra/action-commit-push@v0.3
