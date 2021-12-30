@@ -33,18 +33,12 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         
     - name: Update Version
-      uses: nowactions/envsubst@v1
-      with:
-        input: ./deployment.tpl.yml
-        output: ./deployment1.yaml
-      env:
-        BUILD_NUMBER: ${{ github.sha }}
-        
-    - name: copy
       run: |
-        cat deployment1.yaml > ./config/deployment.yaml
+        ver=$(cat ./config/deployment.yaml | grep image: | awk '{print $2}')
+        sed -i "s|$ver|${{ steps.build-image.outputs.image }}|g" ./config/deployment.yaml
         
     - name: Run the Action
       uses: devops-infra/action-commit-push@v0.3
