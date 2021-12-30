@@ -37,7 +37,7 @@ jobs:
         
     - name: Update Version
       run: |
-        sed -i "s|image:|image: ${{ steps.build-image.outputs.image }}|g" ./deployment.yaml
+        sed -i "s|image: *|image: ${{ steps.build-image.outputs.image }}|g" ./config/deployment.yaml
         
     # - name: Run the Action
       # uses: devops-infra/action-commit-push@v0.3
