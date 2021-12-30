@@ -39,12 +39,12 @@ jobs:
       run: |
         sed -i "s|image:|image: ${{ steps.build-image.outputs.image }}|g" ./deployment.yaml
         
-    - name: Run the Action
-      uses: devops-infra/action-commit-push@v0.3
-      with:
-        github_token: "${{ secrets.TOKEN }}"
-        add_timestamp: false
-        commit_prefix: "[AUTO]"
-        commit_message: "Automatic commit"
-        force: false
-        target_branch: main
+    # - name: Run the Action
+      # uses: devops-infra/action-commit-push@v0.3
+      # with:
+        # github_token: "${{ secrets.TOKEN }}"
+        # add_timestamp: false
+        # commit_prefix: "[AUTO]"
+        # commit_message: "Automatic commit"
+        # force: false
+        # target_branch: main
