@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: helloweb
-        image: 527720397058.dkr.ecr.us-east-2.amazonaws.com/argocd:${{ github.sha }}
+        image: 527720397058.dkr.ecr.us-east-2.amazonaws.com/argocd:${{ BUILD_NUMBER }}
         ports:
         - containerPort: 80
