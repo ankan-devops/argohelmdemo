@@ -38,9 +38,13 @@ jobs:
       uses: nowactions/envsubst@v1
       with:
         input: ./deployment.tpl.yml
-        output: ./config/deployment.yaml
+        output: ./deployment1.yaml
       env:
         BUILD_NUMBER: ${{ github.sha }}
+        
+    - name: copy
+      run: |
+        cat deployment1.yaml > ./config/deployment.yaml
         
     # - name: Run the Action
       # uses: devops-infra/action-commit-push@v0.3
