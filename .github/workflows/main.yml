@@ -43,4 +43,11 @@ jobs:
       uses: devops-infra/action-commit-push@v0.3
       with:
         github_token: "${{ secrets.TOKEN }}"
+        add_timestamp: false
+        commit_prefix: "[AUTO]"
+        commit_message: "Automatic commit"
+        force: false
+        target_branch: main
+      with:
+        github_token: "${{ secrets.TOKEN }}"
         commit_message: "Automatic commit"
