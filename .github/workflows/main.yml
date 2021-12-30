@@ -38,8 +38,8 @@ jobs:
     - name: Update Version
       run: |
         echo "ver=$(cat ./config/deployment.yaml | grep image: | awk '{print $2}')" >> $GITHUB_ENV
-        echo "${{ env.ver }}"
-        sed -i "s | ${{ env.ver }} | ${{ steps.build-image.outputs.image }} | g" ./config/deployment.yaml
+        #echo "${{ env.ver }}"
+        sed -i "s | $ver | ${{ steps.build-image.outputs.image }} | g" ./config/deployment.yaml
         
     - name: Run the Action
       uses: devops-infra/action-commit-push@v0.3
