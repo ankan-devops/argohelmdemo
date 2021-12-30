@@ -31,14 +31,13 @@ jobs:
         ECR_REPOSITORY: argocd
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        sudo docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        sudo docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
+        sudo echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         
     - name: Update Version
       run: |
-        sudo ver=$(cat ./config/deployment.yaml | grep image: | awk '{print $2}')
-        sudo sed -i "s | $ver | ${{ steps.build-image.outputs.image }} | g" ./config/deployment.yaml
+        sudo sed -i "s | "$(cat ./config/deployment.yaml | grep image: | awk '{print $2}')" | ${{ steps.build-image.outputs.image }} | g" ./config/deployment.yaml
         
     - name: Run the Action
       uses: devops-infra/action-commit-push@v0.3
