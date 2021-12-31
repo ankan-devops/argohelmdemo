@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: helloweb
-        image: 527720397058.dkr.ecr.us-east-2.amazonaws.com/argocd:1341342134
+        image: 373474467195.dkr.ecr.us-east-2.amazonaws.com/argocd:cb455124ff4704df0aa2417b8baabf9dd0776a08
         ports:
         - containerPort: 80
